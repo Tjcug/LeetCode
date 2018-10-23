@@ -3,7 +3,7 @@ package com.hust.edu.list;
 /**
  * locate com.hust.edu.list
  * Created by mastertj on 2018/10/23.
- * 142 检测环形链表2
+ * 142 循环链表检测2
  */
 public class _142_DetectCycle {
     public ListNode detectCycle(ListNode head) {

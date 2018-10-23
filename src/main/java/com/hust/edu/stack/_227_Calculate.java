@@ -27,13 +27,13 @@ public class _227_Calculate {
                     stack.push(ch);
                     break;
                 case '*':
-                    while (!stack.isEmpty() && (stack.peek() =='*' || stack.peek() == '/')){
+                    while (!stack.isEmpty() && stack.peek() =='*' || stack.peek() == '/'){
                         calucateHelper(stack, opeartorNums);
                     }
                     stack.push(ch);
                     break;
                 case '/':
-                    while (!stack.isEmpty() && (stack.peek() == '*' || stack.peek() == '/')){
+                    while (!stack.isEmpty() && stack.peek() == '*' || stack.peek() == '/'){
                         calucateHelper(stack, opeartorNums);
                     }
                     stack.push(ch);
@@ -79,7 +79,7 @@ public class _227_Calculate {
 
     public static void main(String[] args) {
         _227_Calculate calculate=new _227_Calculate();
-        int calculate1 = calculate.calculate("3+2*2");
+        int calculate1 = calculate.calculate("3+2*2-6/5");
         System.out.println(calculate1);
     }
 }

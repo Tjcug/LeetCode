@@ -33,6 +33,30 @@ public class _8__myAtoi {
         return sum * sign;
     }
 
+    /**
+     * 判断字符串str是否超过 Integer最大数字
+     * 返回 0 表示字符串不是一个数字 若超过最大数字则返回Integer.MAX_VALUE
+     * @param str
+     * @return
+     */
+    private int isDigitOverNumber(String str){
+        int index=0;
+        int len=str.length();
+        int sum = 0;
+        while(index<len)
+        {
+            int digit = str.charAt(index)-'0';
+            if(digit < 0||digit > 9)
+                break;
+            if(( Integer.MAX_VALUE/10 < sum )||( Integer.MAX_VALUE/10 == sum&&Integer.MAX_VALUE%10<digit))//if out of the range
+                return Integer.MAX_VALUE;
+
+            sum = sum*10 + digit;
+            index ++;
+        }
+        return sum;
+    }
+
 
     public static void main(String[] args) {
         _8__myAtoi myAtoi=new _8__myAtoi();

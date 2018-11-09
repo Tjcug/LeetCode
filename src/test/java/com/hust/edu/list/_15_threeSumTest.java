@@ -1,5 +1,6 @@
 package com.hust.edu.list;
 
+import com.hust.edu.integer._15_threeSum;
 import org.junit.Test;
 
 import java.util.List;

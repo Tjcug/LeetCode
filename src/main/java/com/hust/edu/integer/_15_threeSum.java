@@ -1,4 +1,4 @@
-package com.hust.edu.list;
+package com.hust.edu.integer;
 
 import java.util.ArrayList;
 import java.util.Arrays;

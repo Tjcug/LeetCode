@@ -8,7 +8,7 @@ package com.hust.edu.array;
 public class MaxSubSum {
     // 时间复杂度O（N^3）
     public static int maxSubSum1(int nums[]){
-        int maxSum=0;
+        int maxSum=Integer.MIN_VALUE;
         for(int i=0; i< nums.length; i++){
             for(int j=i; j<nums.length;j++){
                 int thisSum=0;
@@ -23,7 +23,7 @@ public class MaxSubSum {
 
     // 时间复杂度O（N^2）
     public static int maxSubSum2(int nums[]) {
-        int maxSum = 0;
+        int maxSum=Integer.MIN_VALUE;
         for (int i = 0; i < nums.length; i++) {
             int thisSum = 0;
             for (int j = i; j < nums.length; j++) {

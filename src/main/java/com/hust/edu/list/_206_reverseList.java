@@ -9,6 +9,9 @@ import java.util.Stack;
  */
 public class _206_reverseList {
     public ListNode reverseList(ListNode head) {
+        if(head==null)
+            return head;
+
         ListNode temp= head;
         Stack<Integer> stack=new Stack<>();
         while (temp!=null){
@@ -18,8 +21,9 @@ public class _206_reverseList {
 
         ListNode dumpyNode= new ListNode(0);
         temp=dumpyNode;
-        while (stack.isEmpty()){
+        while (!stack.isEmpty()){
             Integer pop = stack.pop();
+            System.out.println(pop);
             temp.next=new ListNode(pop);
             temp=temp.next;
         }

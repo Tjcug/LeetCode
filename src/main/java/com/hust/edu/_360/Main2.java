@@ -9,22 +9,21 @@ import java.util.Scanner;
 public class Main2 {
     public static void main(String[] args) {
         Scanner scanner=new Scanner(System.in);
-        String str1 = scanner.nextLine();
-        String[] split = str1.split(" ");
-        int N= Integer.parseInt(split[0]);
-        int M= Integer.parseInt(split[1]);
-        int K= Integer.parseInt(split[2]);
-        int [][]number=new int[N][M];
-        for (int i = 0; i < N; i++) {
-            String str=scanner.nextLine();
-            String[] splitNum = str.split(" ");
-            number[i]=new int[M];
-            for (int j = 0; j < splitNum.length; j++) {
-                number[i][j]= Integer.parseInt(splitNum[j]);
+        while (scanner.hasNext()){
+            int N= scanner.nextInt();
+            int M= scanner.nextInt();
+            int K= scanner.nextInt();
+            int [][]number=new int[N][M];
+            for (int i = 0; i < N; i++) {
+                number[i]=new int[M];
+                for (int j = 0; j < M; j++) {
+                    number[i][j]= scanner.nextInt();
+                }
             }
+            int result = getNumber(number, N, M, K);
+            System.out.println(result);
         }
-        int result = getNumber(number, N, M, K);
-        System.out.println(result);
+       scanner.close();
     }
 
     public static int getNumber(int[][] number, int N, int M ,int K){

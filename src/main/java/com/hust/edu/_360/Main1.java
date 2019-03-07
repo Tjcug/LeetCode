@@ -1,6 +1,7 @@
 package com.hust.edu._360;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * locate com.hust.edu._360
@@ -9,22 +10,32 @@ import java.util.*;
 public class Main1 {
     public static void main(String[] args) {
         Scanner scanner=new Scanner(System.in);
-        String str1 = scanner.nextLine();
-        String[] split1 = str1.split(" ");
-        String str2 = scanner.nextLine();
-        String[] split2 = str2.split(" ");
-        List<Integer> list=new ArrayList<>();
-        for (int i = 0; i < split2.length; i++) {
-            list.add(Integer.valueOf(split2[i]));
+        while (scanner.hasNext()){
+            int N = scanner.nextInt();
+            int M= scanner.nextInt();
+            int a[] =new int[N];
+            for (int i = 0; i < N; i++) {
+                a[i] = scanner.nextInt();
+            }
+
+            int max = getMax(a, M, N);
+            System.out.println(max);
         }
-        int min = getMin(list, Integer.valueOf(split1[0]), Integer.valueOf(split1[1]));
-        System.out.println(min);
+        scanner.close();
     }
 
-    public static int getMin(List<Integer> list, int M, int N){
-        Collections.sort(list);
-        int temp=N-M/2;
-        List<Integer> subList = list.subList(0, list.size()-temp);
-        return subList.get(0)+subList.get(subList.size()-1);
+    public static int getMax(int[] a ,int M, int N){
+        int singleCount= M-(N-M);
+        Arrays.sort(a);
+        int max = Integer.MIN_VALUE;
+        int lastDouble = a.length - singleCount -1;
+        int low=0;
+
+        while (low < lastDouble){
+            max = Math.max(a[low]+a[lastDouble],max);
+            low++;
+            lastDouble--;
+        }
+        return max;
     }
 }

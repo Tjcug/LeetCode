@@ -12,19 +12,22 @@ public class _26_Convert {
         return realHead;
     }
 
-    private void ConvertHelper(TreeNode pRootOfTree) {
-        if(pRootOfTree==null) return;
-        ConvertHelper(pRootOfTree.left);
-        if (temp == null) {
-            temp = pRootOfTree;
-            realHead = pRootOfTree;
-        } else {
-            temp.right = pRootOfTree;
-            pRootOfTree.left = temp;
-            temp = pRootOfTree;
+    private void ConvertHelper(TreeNode root) {
+        if(root==null)
+            return;
+
+        ConvertHelper(root.left);
+        if(temp==null){
+            temp=root;
+            realHead=root;
+        }else {
+            temp.right=root;
+            root.left=temp;
+            temp=root;
         }
-        ConvertHelper(pRootOfTree.right);
+        ConvertHelper(root.right);
     }
+
 
     private static class TreeNode {
         int val;

@@ -9,15 +9,15 @@ import java.util.*;
 public class Main1 {
     public static void main(String[] args) {
         Scanner scanner=new Scanner(System.in);
-        String str1 = scanner.next();
-        String[] split = str1.split(" ");
-        String str2 = scanner.next();
-        String[] split1 = str2.split(" ");
+        String str1 = scanner.nextLine();
+        String[] split1 = str1.split(" ");
+        String str2 = scanner.nextLine();
+        String[] split2 = str2.split(" ");
         List<Integer> list=new ArrayList<>();
-        for (int i = 0; i < split.length; i++) {
-            list.add(Integer.valueOf(split[i]));
+        for (int i = 0; i < split2.length; i++) {
+            list.add(Integer.valueOf(split2[i]));
         }
-        int min = getMin(list, Integer.valueOf(split[0]), Integer.valueOf(split[1]));
+        int min = getMin(list, Integer.valueOf(split1[0]), Integer.valueOf(split1[1]));
         System.out.println(min);
     }
 

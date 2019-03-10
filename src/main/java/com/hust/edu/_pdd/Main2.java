@@ -1,6 +1,7 @@
 package com.hust.edu._pdd;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -24,24 +25,22 @@ public class Main2 {
                 }
             }
 
-            int index = 0;
-            for (int i = 1; i < chars.length; i++) {
-                if((int)chars[index] > (int)chars[i]){
-                    int temp=i-1;
-                    while (temp>index){
-                        Integer integer = map.get(chars[temp]);
-                        if(integer>1){
-                            temp--;
-                            map.put(chars[temp],--integer);
-                        }else
-                            break;
-                    }
-                    if(temp==index)
-                        index=i;
-                }
-            }
-
-            System.out.println(chars[index]);
+            char dfs = dfs(chars, 0, map);
+            System.out.println(dfs);
         }
+    }
+
+    public static char dfs(char[] ch,int i, Map<Character,Integer> map){
+        if(ch[i]=='a')
+            return 'a';
+        if(i==ch.length-1 || map.get(ch[i])==1)
+            return ch[i];
+
+        map.put(ch[i],1);
+        char c=dfs(ch,i+1,map);
+        if(c<ch[i])
+            return c;
+        else
+            return ch[i];
     }
 }

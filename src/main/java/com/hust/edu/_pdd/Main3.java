@@ -21,11 +21,7 @@ public class Main3 {
 
             int max=Integer.MIN_VALUE;
             for (int i = 0; i < N; i++) {
-                for (int j = i+1; j < N; j++) {
-                    if(Math.abs(a[i]-a[j])>=d){
-                        max=Math.max(max,b[i]+b[j]);
-                    }
-                }
+
             }
             System.out.println(max);
         }

@@ -1,5 +1,7 @@
 package com.hust.edu._pdd;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -12,24 +14,42 @@ public class Main3 {
         while (in.hasNext()){
             int N= in.nextInt();
             int d= in .nextInt();
-            int a[]=new int[N];
-            int b[]=new int[N];
+            Bank[] banks=new Bank[N];
+
             for (int i = 0; i < N; i++) {
-                a[i]=in.nextInt();
-                b[i]=in.nextInt();
+                banks[i]=new Bank(in.nextInt(),in.nextInt());
             }
+
+            Arrays.sort(banks, new Comparator<Bank>() {
+                @Override
+                public int compare(Bank o1, Bank o2) {
+                    return -(o1.value-o2.value);
+                }
+            });
 
             int max=Integer.MIN_VALUE;
             for (int i = 0; i < N; i++) {
-                boolean m_bool=false;
-                for (int j = 0; j < N; j++) {
-                    if(m_bool || Math.abs(a[i]-a[j])>=d){
-                        m_bool=true;
-                        max=Math.max(b[i]+b[j],max);
+                for (int j = i+1; j < N; j++) {
+                    if(Math.abs(banks[i].position-banks[j].position)>=d){
+                        max=Math.max(banks[i].value+banks[j].value,max);
+                        break;
                     }
                 }
             }
             System.out.println(max);
+        }
+    }
+
+    private static class Bank{
+        private int position;
+        private int value;
+
+        public Bank() {
+        }
+
+        public Bank(int position, int value) {
+            this.position = position;
+            this.value = value;
         }
     }
 }

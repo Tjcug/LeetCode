@@ -94,7 +94,6 @@ public class Sort {
       int low=start;
       int high=end;
       int target=nums[low];
-
       while (low<high){
           while (low<high && nums[high]>=target){
               high--;
@@ -149,48 +148,50 @@ public class Sort {
     }
 
     //堆排序
-    private boolean isLeaf(int[] nums, int pos){
-        //没有叶子节点
-        return (2*pos+1)>=nums.length;
+    private boolean isLeaf(int length,int pos)
+    {
+        return pos>length/2-1;
     }
 
-    private void swap(int[] nums,int pos1, int pos2){
-        int tmp=nums[pos2];
-        nums[pos2]=nums[pos1];
-        nums[pos1]=tmp;
-    }
+    private void shiftdown(int nums[],int length,int pos)
+    {
+        while(!isLeaf(length,pos))
+        {
+            int left=2*pos+1,right=2*pos+2;
+            if(right<length)
+                left=nums[left]>nums[right]?right:left;
 
-    private void shiftdown(int[] nums, int pos) {
-        while (!isLeaf(nums,pos)){
-            int left=2*pos+1;
-            int right=2*pos+2;
-            if(right<nums.length){
-                left= nums[left] < nums[right] ? right : left;
-            }
-            //是否需要调整
-            if(nums[left]<=nums[pos])
-                return;
-
+            //需要删除
+            if(nums[left]>nums[pos]) return ;
             swap(nums,pos,left);
             pos=left;
         }
     }
 
-    public void buildHeap(int nums[])
-    {
-       for(int i=nums.length/2-1;i>=0;i--){
-           shiftdown(nums,i);
-       }
+    private void swap(int[] nums, int pos, int left) {
+        int tmp=nums[pos];
+        nums[pos]=nums[left];
+        nums[left]=tmp;
     }
 
-    //    public void heapSort(int nums[])
-//    {
-//        for(int i=nums.length-1;i>=0;i--)
-//        {
-//            swap(nums,0,i);
-//            shiftdown(nums,i);
-//        }
-//    }
+    private void buildHeap(int nums[],int length)
+    {
+        for(int i=length/2-1;i>=0;i--)
+        {
+            shiftdown(nums,length,i);
+        }
+    }
+
+    public void heapSort(int nums[])
+    {
+        for(int i=nums.length;i>0;i--)
+        {
+            buildHeap(nums,i);
+            swap(nums,0,i-1);
+            System.out.println(nums[i-1]);
+        }
+    }
+
     public static void main(String[] args)
     {
         Sort sort=new Sort();
@@ -204,10 +205,6 @@ public class Sort {
         //sort.mergeSrot(nums,0,nums.length-1);
         //希尔排序
         //sort.shellSort(nums);
-        sort.buildHeap(nums);
-        for(int i:nums)
-        {
-            System.out.print(i+" ");
-        }
+        sort.heapSort(nums);
     }
 }

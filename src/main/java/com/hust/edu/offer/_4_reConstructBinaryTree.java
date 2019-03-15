@@ -18,20 +18,21 @@ public class _4_reConstructBinaryTree {
         for(int i=0;i<in.length; i++){
             inorderList.add(in[i]);
         }
-        TreeNode root;
-        return buildTreeHelper(preorderList,inorderList);
+        return reConstructBinaryTreeHelper(preorderList,inorderList);
     }
 
-    public TreeNode buildTreeHelper(List<Integer> preorder, List<Integer> inorder) {
-        if(preorder.size()==1 || inorder.size()==1){
-            return new TreeNode(preorder.get(0));
-        }
-        if(preorder.size()==0 || inorder.size()==0)
+    private TreeNode reConstructBinaryTreeHelper(List<Integer> preorderList, List<Integer> inorderList) {
+        if(preorderList.size()==0 || inorderList.size()==0)
             return null;
-        int search = inorder.indexOf(preorder.get(0));
-        TreeNode treeNode=new TreeNode(preorder.get(0));
-        treeNode.left=buildTreeHelper(preorder.subList(1,search+1),inorder.subList(0,search));
-        treeNode.right=buildTreeHelper(preorder.subList(search+1,preorder.size()),inorder.subList(search+1,inorder.size()));
+        if(preorderList.size()==1 && inorderList.size()==1)
+            return new TreeNode(preorderList.get(0));
+
+        Integer target = preorderList.get(0);
+        int search = inorderList.indexOf(target);//其中有search左边有search个元素
+        TreeNode treeNode=new TreeNode(target);
+        //preorderList.subList(a,b) 其中b-a为最后result的size 左闭右开区间
+        treeNode.left=reConstructBinaryTreeHelper(preorderList.subList(1,search+1),inorderList.subList(0,search));
+        treeNode.right=reConstructBinaryTreeHelper(preorderList.subList(search+1,preorderList.size()),inorderList.subList(search+1,inorderList.size()));
         return treeNode;
     }
 

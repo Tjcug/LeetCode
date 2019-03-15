@@ -11,19 +11,18 @@ public class _56_deleteDuplication {
         }
 
         ListNode dumpyNode = new ListNode(-1);//设置一个trick
-
         dumpyNode.next = pHead;
 
         ListNode p = pHead;
-        ListNode second = dumpyNode;
+        ListNode temp = dumpyNode;
         while (p != null && p.next != null) {
             if (p.val == p.next.val) {
                 int val = p.val;
                 while (p!= null&&p.val == val)
                     p = p.next;
-                second.next = p;
+                temp.next = p;
             } else {
-                second = p;
+                temp = p;
                 p = p.next;
             }
         }

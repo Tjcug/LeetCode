@@ -3,6 +3,7 @@ package com.hust.edu.offer;
 /**
  * locate com.hust.edu.offer
  * Created by MasterTj on 2019/2/28.
+ * 替换空格
  */
 public class _2_replaceSpace {
     public String replaceSpace(StringBuffer str) {

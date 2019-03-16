@@ -5,10 +5,10 @@ package com.hust.edu._zjtd;
  * Created by MasterTj on 2019/3/16.
  */
 import java.util.Scanner;
-public class Main {
+public class Main1 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        while (in.hasNextInt()) {//注意while处理多个case
+        while (in.hasNext()) {//注意while处理多个case
             int price = in.nextInt();
             System.out.println(lessCoin(price));
         }

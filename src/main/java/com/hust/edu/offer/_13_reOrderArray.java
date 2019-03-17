@@ -1,7 +1,6 @@
 package com.hust.edu.offer;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * locate com.hust.edu.offer
@@ -10,24 +9,36 @@ import java.util.List;
  */
 public class _13_reOrderArray {
     public void reOrderArray(int [] array) {
-        List<Integer> alist=new ArrayList<>();
-        List<Integer> blist=new ArrayList<>();
-        for (int i = 0; i < array.length; i++) {
-            if(array[i]%2!=0){
-                alist.add(array[i]);
-            }else
-                blist.add(array[i]);
+        if(array==null || array.length==0)
+            return;
+        int low=0;
+        int high=array.length-1;
+        while (low<high){
+            //low 从0开始向后移动,直到它遇到偶数
+            while (low<high && !Function(array[low])){
+                low++;
+            }
+            //low 从arry.length-1开始向前移动,直到它遇到奇数
+            while (low<high && Function(array[high])){
+                high--;
+            }
+            if(low<high){
+                int temp=array[high];
+                array[high]=array[low];
+                array[low]=temp;
+            }
         }
-        System.out.println(alist);
-        System.out.println(blist);
-        alist.addAll(blist);
-        for (int i = 0; i < alist.size(); i++) {
-            array[i]=alist.get(i);
-        }
+    }
+
+    public static boolean Function(int number){
+        //是否是偶数
+        return number%2==0;
     }
 
     public static void main(String[] args) {
         _13_reOrderArray reOrderArray=new _13_reOrderArray();
-        reOrderArray.reOrderArray(new int[]{2,4,6,1,3,5,7});
+        int[] ints = {2, 4, 6, 1, 3, 5, 7};
+        reOrderArray.reOrderArray(ints);
+        System.out.println(Arrays.toString(ints));
     }
 }

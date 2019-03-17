@@ -5,34 +5,33 @@ import java.util.ArrayList;
 /**
  * locate com.hust.edu.offer
  * Created by mastertj on 2019/3/5.
+ * 顺时针打印矩阵
  */
 public class _19_printMatrix {
     public ArrayList<Integer> printMatrix(int [][] matrix) {
-        int row=matrix.length;//行数
-        int collor=matrix[0].length;//列数
-        ArrayList arrayList=new ArrayList();
-        //计算打印的圈数
-        int circle=((row<collor?row:collor)-1)/2+1;//圈数
+        ArrayList<Integer> arrayList=new ArrayList<>();
+        int rows=matrix.length;//行数
+        int cols=matrix[0].length;//列数
+        int circle=((rows>cols?cols:rows)-1)/2+1;
         for (int i = 0; i < circle; i++) {
-            //从左向右打印
-            for (int j = i; j < collor-i; j++) {
+            //从左到右打印
+            for (int j = i; j < cols-i; j++) {
                 arrayList.add(matrix[i][j]);
             }
             //从上向下打印
-            for (int k = i+1; k < row-i; k++) {
-                arrayList.add(matrix[k][collor-i-1]);
+            for (int j = i+1; j <rows-i; j++) {
+                arrayList.add(matrix[j][cols-1-i]);
             }
-            //从右向左打印,除去重复元素 row-2*i-1!=0 根据上面从上向下打印可得
-            if(row-2*i-1!=0) {
-                for (int z = collor - 2 - i; z > i; z--) {
-                    arrayList.add(matrix[row - 1 - i][z]);
+            //从右向左打印,去取重复元素
+            if(rows-2-2*i>0){
+                for (int j = cols-i-2; j >=i ; j--) {
+                    arrayList.add(matrix[rows-i-1][j]);
                 }
             }
-
-            //从下向上打印，除去重复元素 根据上面从左向右打印可得
-            if(collor-2*i-1!=0) {
-                for (int m = row - i - 1; m > i; m--) {
-                    arrayList.add(matrix[m][i]);
+            //从下向上打印,去取重复元素
+            if(cols-2*i-1>0){
+                for (int j = rows-2-i; j >i ; j--) {
+                    arrayList.add(matrix[j][i]);
                 }
             }
         }

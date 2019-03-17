@@ -7,6 +7,7 @@ import java.util.Queue;
 /**
  * locate com.hust.edu.offer
  * Created by mastertj on 2019/3/5.
+ * 从上往下打印二叉搜索树
  */
 public class _22_PrintFromTopToBottom {
     public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
@@ -15,13 +16,11 @@ public class _22_PrintFromTopToBottom {
         ArrayList<Integer> arrayList=new ArrayList();
         Queue<TreeNode> queue=new ArrayDeque<>();
         queue.add(root);
-
         while (!queue.isEmpty()){
-            TreeNode treeNode=queue.remove();
+            TreeNode treeNode = queue.poll();
             arrayList.add(treeNode.val);
             if(treeNode.left!=null)
                 queue.add(treeNode.left);
-
             if(treeNode.right!=null)
                 queue.add(treeNode.right);
         }

@@ -3,7 +3,7 @@ package com.hust.edu.offer;
 /**
  * locate com.hust.edu.offer
  * Created by MasterTj on 2019/2/28.
- * 举证覆盖问题
+ * 矩阵覆盖问题
  */
 public class _10_RectCover {
     public int RectCover(int target) {

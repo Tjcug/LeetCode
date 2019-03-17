@@ -11,14 +11,11 @@ public class _21_IsPopOrder {
         Stack<Integer> stack=new Stack<>();
         int j=0;
         for (int i = 0; i < pushA.length; i++) {
-            stack.push(pushA[i]);
-            if(pushA[i]==popA[j]){
-                stack.pop();
-                if(++j==popA.length)
-                    return true;
-            }
+            if(pushA[i]!=popA[j]){
+                stack.push(pushA[i]);
+            }else
+                j++;
         }
-
         while (!stack.isEmpty()){
             if(stack.pop()!=popA[j])
                 return false;
@@ -26,5 +23,11 @@ public class _21_IsPopOrder {
                 j++;
         }
         return true;
+    }
+
+    public static void main(String[] args) {
+        _21_IsPopOrder isPopOrder=new _21_IsPopOrder();
+        boolean b = isPopOrder.IsPopOrder(new int[]{1, 2, 3, 4, 5}, new int[]{4, 3, 5, 1, 2});
+        System.out.println(b);
     }
 }

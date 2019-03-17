@@ -8,20 +8,18 @@ public class _18_Mirror {
     public void Mirror(TreeNode root) {
         if(root==null)
             return;
-
-        MirrorHelper(root);
-    }
-
-    public void MirrorHelper(TreeNode root){
+        if(root.left==null && root.right==null)
+            return;
+        //交换root节点的左子树和右子树节点
         TreeNode temp=root.right;
         root.right=root.left;
         root.left=temp;
-        if(root.left!=null)
-            MirrorHelper(root.left);
-        if(root.right!=null)
-            MirrorHelper(root.right);
-    }
 
+        if(root.left!=null)
+            Mirror(root.left);
+        if(root.right!=null)
+            Mirror(root.right);
+    }
     public static class TreeNode {
         int val;
         TreeNode left;

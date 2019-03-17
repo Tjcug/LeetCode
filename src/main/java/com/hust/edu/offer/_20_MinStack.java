@@ -1,33 +1,38 @@
 package com.hust.edu.offer;
 
-import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.Stack;
 
 /**
  * locate com.hust.edu.offer
  * Created by mastertj on 2019/3/5.
+ * 包含min函数的栈
+ * 定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。
+ * 算法思路：利用辅助栈的思想实现，辅助栈中放入的元素是当前栈中元素的最小值。
  */
 public class _20_MinStack {
 
-    private Queue<Integer> queue=new PriorityQueue<>();
-    private LinkedList<Integer> list=new LinkedList<>();
+    private Stack<Integer> stack=new Stack<>();
+    private Stack<Integer> minStack=new Stack<>();
 
     public void push(int node) {
-        queue.add(node);
-        list.addFirst(node);
+        stack.push(node);
+        if(minStack.size()==0 || node<min())
+            minStack.push(node);
+        else
+            minStack.push(min());
+
     }
 
     public void pop() {
-        Integer integer = list.removeFirst();
-        queue.remove(integer);
+        stack.pop();
+        minStack.pop();
     }
 
     public int top() {
-        return list.getFirst();
+        return stack.peek();
     }
 
     public int min() {
-        return queue.peek();
+        return minStack.peek();
     }
 }

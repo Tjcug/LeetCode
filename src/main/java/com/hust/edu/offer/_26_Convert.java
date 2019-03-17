@@ -7,36 +7,36 @@ package com.hust.edu.offer;
  * 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。
  */
 public class _26_Convert {
+    private TreeNode pListNodeInList=null;
+
     public TreeNode Convert(TreeNode pRootOfTree) {
         if(pRootOfTree==null){
             return null;
         }
-        TreeNode pListNodeInList=null;
-        ConvertHelper(pRootOfTree,pListNodeInList);
-        TreeNode temp=pListNodeInList;
-
+        ConvertHelper(pRootOfTree);
+        TreeNode temp=pRootOfTree;
         while (temp.left!=null){
             temp=temp.left;
         }
         return temp;
     }
 
-    private void ConvertHelper(TreeNode pRootOfTree, TreeNode pListNodeInList) {
+    private void ConvertHelper(TreeNode pRootOfTree) {
         if(pRootOfTree==null)
             return;
-        TreeNode current=pRootOfTree;
+        TreeNode current = pRootOfTree;
+        if(pRootOfTree.left!=null)
+            ConvertHelper(pRootOfTree.left);
 
-        if(current.left!=null){
-            ConvertHelper(current.left,pListNodeInList);
-        }
         current.left=pListNodeInList;
-        if(pListNodeInList!=null){
+
+        if(pListNodeInList!=null)
             pListNodeInList.right=current;
-        }
+
         pListNodeInList=current;
-        if(current.right!=null){
-            ConvertHelper(current.right,pListNodeInList);
-        }
+
+        if(pRootOfTree.right!=null)
+            ConvertHelper(pRootOfTree.right);
 
     }
 

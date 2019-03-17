@@ -3,6 +3,7 @@ package com.hust.edu.offer;
 /**
  * locate com.hust.edu.offer
  * Created by MasterTj on 2019/3/6.
+ * 获取丑数
  */
 public class _33_GetUglyNumber_Solution {
 //    public int GetUglyNumber_Solution(int index) {
@@ -34,16 +35,14 @@ public class _33_GetUglyNumber_Solution {
     public int GetUglyNumber_Solution(int index) {
         if(index <= 0)
             return 0;
-        int[] uglyNumber=new int[index];
-        uglyNumber[0]=1;
-
-        int M1=0;//2
-        int M2=0;//3
-        int M3=0;//5
-        for (int i = 1; i < uglyNumber.length; i++) {
+        int[] uglyNumber=new int[index+1];
+        uglyNumber[1]=1;
+        int M1=1;//2
+        int M2=1;//3
+        int M3=1;//5
+        for (int i = 2; i <= index; i++) {
             int minNum=Math.min(Math.min(uglyNumber[M1]*2,uglyNumber[M2]*3),uglyNumber[M3]*5);
             uglyNumber[i]=minNum;
-
             if(minNum == uglyNumber[M1]*2)
                 M1++;
             if(minNum == uglyNumber[M2]*3)
@@ -51,8 +50,7 @@ public class _33_GetUglyNumber_Solution {
             if(minNum == uglyNumber[M3]*5)
                 M3++;
         }
-
-        return uglyNumber[index-1];
+        return uglyNumber[index];
     }
 
     public static void main(String[] args) {

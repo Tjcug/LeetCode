@@ -3,24 +3,25 @@ package com.hust.edu.offer;
 /**
  * locate com.hust.edu.offer
  * Created by MasterTj on 2019/3/6.
+ * 找到整数中1出现的个数
  */
 public class _31_NumberOf1Between1AndN_Solution {
     public int NumberOf1Between1AndN_Solution(int n) {
         int number=0;
-        for (int i = 0; i <= n; i++) {
+        for (int i = 1; i <= n; i++) {
             number+=NumberOf1(i);
         }
         return number;
     }
 
-    public int NumberOf1(int n){
-        int number=0;
+    private int NumberOf1(int n) {
+        int result=0;
         while (n!=0){
             if(n%10==1)
-                number++;
+                result++;
             n=n/10;
         }
-        return number;
+        return result;
     }
 
     public static void main(String[] args) {

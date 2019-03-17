@@ -3,6 +3,7 @@ package com.hust.edu.offer;
 /**
  * locate com.hust.edu.offer
  * Created by MasterTj on 2019/3/6.
+ * 左旋转字符串
  */
 public class _43_LeftRotateString {
     public String LeftRotateString(String str,int n) {

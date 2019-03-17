@@ -257,7 +257,7 @@ public class _26_Convert {
 }
 ```
 
-### 8. 字符串全排列问题
+## 8. 字符串全排列问题
 ### 算法描述
 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。
 
@@ -323,3 +323,101 @@ public class _27_Permutation {
 }
 ```
 
+## 9. 数组中的逆序数数字
+### 算法描述
+在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组,求出这个数组中的逆序对的总数P。并将P对1000000007取模的结果输出。 即输出P%1000000007
+
+### 算法思路
+我们先把数组分解成两个长度为2的子数组，再把这两个子数组分别拆成两个长度为1的子数组。接下来一边合并相邻的子数组，一边统计逆序对的数目。在第一对长度为1的子数组{7}、{5}中7大于5，因此（7,5）组成一个逆序对。同样在第二对长度为1的子数组{6}、{4}中也有逆序对（6,4）。由于我们已经统计了这两对子数组内部的逆序对，因此需要把这两对子数组 排序 所示， 以免在以后的统计过程中再重复统计。
+
+接下来我们统计两个长度为2的子数组子数组之间的逆序对。合并子数组并统计逆序对的过程如下图如下图所示。
+
+我们先用两个指针分别指向两个子数组的末尾，并每次比较两个指针指向的数字。如果第一个子数组中的数字大于第二个数组中的数字，则构成逆序对，并且逆序对的数目等于第二个子数组中剩余数字的个数，如下图（a）和（c）所示。如果第一个数组的数字小于或等于第二个数组中的数字，则不构成逆序对，如图b所示。每一次比较的时候，我们都把较大的数字从后面往前复制到一个辅助数组中，确保 辅助数组（记为copy） 中的数字是递增排序的。在把较大的数字复制到辅助数组之后，把对应的指针向前移动一位，接下来进行下一轮比较。
+
+过程：先把数组分割成子数组，先统计出子数组内部的逆序对的数目，然后再统计出两个相邻子数组之间的逆序对的数目。在统计逆序对的过程中，还需要对数组进行排序。如果对排序算法很熟悉，我们不难发现这个过程实际上就是归并排序。
+
+``` java
+public class _35_InversePairs {
+    public int InversePairs(int [] array) {
+        int[] copy=new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            copy[i]=array[i];
+        }
+        return InversePairsHelper(array,copy,0,array.length-1);
+    }
+
+    private int InversePairsHelper(int [] array,int [] copy, int start ,int end) {
+        if(start==end){
+            copy[start]=array[start];
+            return 0;
+        }
+        int length=(end-start)/2;
+        int left=InversePairsHelper(copy,array,start,start+length);
+        int right=InversePairsHelper(copy,array,start+length+1,end);
+
+        int i=start+length;
+        int j=end;
+        int indexCopy=end;
+        int count=0;
+        while (i>= start && j>=start+length+1){
+            if(array[i]>array[j]){
+                copy[indexCopy--]=array[i--];
+                count+=j-start-length;
+            }else {
+                copy[indexCopy--]=array[j--];
+            }
+        }
+
+        while (i>=start){
+            copy[indexCopy--]=array[i--];
+        }
+
+        while (j>=start+length+1){
+            copy[indexCopy--]=array[j--];
+        }
+        return (left+right+count)%1000000007;
+    }
+}
+```
+## 10.和为S的连续子序列
+###算法描述
+小明很喜欢数学,有一天他在做数学作业时,要求计算出9~16的和,他马上就写出了正确答案是100。但是他并不满足于此,他在想究竟有多少种连续的正数序列的和为100(至少包括两个数)。没多久,他就得到另一组连续正数和为100的序列:18,19,20,21,22。现在把问题交给你,你能不能也很快的找出所有和为S的连续正数序列? Good Luck!
+
+###算法思路
+用small和big两个指针分别表示最小值和最大值。small初始化为1，big初始化为2。如果small+big>s,则增大small,去掉序列中较小的值；如果small+big<s,则可以增大big，让序列包含更多的数字。因为序列至少包含两个数字，故small增加到（1+s）/2为止。
+
+### 算法实现
+``` java
+ public ArrayList<ArrayList<Integer>> FindContinuousSequence(int sum) {
+        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+        if(sum < 3) return result;
+        int low=1;
+        int high=2;
+        //设置middle变量的原因在于如果在当前总和小于sum的情况下，
+        //small在增加到sum的一半的过程中肯定会大于sum
+        int mid=(sum+1)/2;
+        int curSum=low+high;
+        while (low<mid){
+            if(curSum==sum)
+                addResultFromLowToHigh(result,low,high);
+            while (curSum > sum && low<mid){
+                curSum-=low;
+                low++;
+                if(curSum==sum)
+                    addResultFromLowToHigh(result,low,high);
+            }
+            high++;
+            curSum+=high;
+        }
+        return result;
+    }
+
+    public void addResultFromLowToHigh(ArrayList<ArrayList<Integer>> result, int low, int high){
+        ArrayList arrayList=new ArrayList();
+        for (int i = low; i <= high; i++) {
+            arrayList.add(i);
+        }
+        result.add(arrayList);
+        return;
+    }
+```

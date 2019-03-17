@@ -1,33 +1,35 @@
 package com.hust.edu.offer;
 
-import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * locate com.hust.edu.offer
  * Created by MasterTj on 2019/3/6.
+ * 数组中只出现一次的数字
  */
 public class _40_FindNumsAppearOnce {
     public void FindNumsAppearOnce(int [] array,int num1[] , int num2[]) {
-        Arrays.sort(array);
-        int size=1;
-        boolean m_bool=true;
-        for (int i = 1; i < array.length; i++) {
-           if(array[i-1]==array[i]){
-               size++;
-           }else {
-               if(size==1){
-                   if(m_bool){
-                       num1[0]=array[i-1];
-                       m_bool=false;
-                   }else {
-                       num2[0]=array[i-1];
-                   }
-               }
-               size=1;
-           }
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for (int i = 0; i < array.length; i++) {
+            if(map.get(array[i])==null){
+                map.put(array[i],1);
+            }else{
+                Integer integer = map.get(array[i]);
+                map.put(array[i],++integer);
+            }
         }
-        if(size==1)
-            num2[0]=array[array.length-1];
+        boolean m_bool=true;
+        for(Integer integer:map.keySet()){
+            if(map.get(integer)==1){
+                if(m_bool){
+                    num1[0]=integer;
+                    m_bool=false;
+                }else {
+                    num1[2]=integer;
+                    break;
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {

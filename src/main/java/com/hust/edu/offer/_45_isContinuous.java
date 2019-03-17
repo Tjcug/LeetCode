@@ -5,6 +5,7 @@ import java.util.Arrays;
 /**
  * locate com.hust.edu.offer
  * Created by MasterTj on 2019/3/6.
+ * 扑克牌顺子
  */
 public class _45_isContinuous {
     public boolean isContinuous(int [] numbers) {
@@ -13,19 +14,22 @@ public class _45_isContinuous {
 
         Arrays.sort(numbers);
         int numbesOfZero=0;
-        for (int i = 0; i < numbers.length && numbers[i]==0; i++) {
-            numbesOfZero++;
+        for (int i = 0; i < numbers.length; i++) {
+            if(numbers[i]==0)
+                numbesOfZero++;
         }
 
-        for (int i = numbesOfZero; i < numbers.length-1; i++) {
-            if(numbers[i+1]!=numbers[i]+1){
-                if(numbesOfZero>0 && numbers[i+1]-numbers[i] -1<=numbesOfZero && numbers[i+1]-numbers[i] -1>0) {
-                    numbesOfZero-=numbers[i+1]-numbers[i]-1;
-                }else
-                    return false;
-            }
+        int low=numbesOfZero;
+        int high=low+1;
+        int numbersGap=0;
+        while (high<numbers.length){
+            if(numbers[low]==numbers[high])
+                return false;
+            numbersGap+=numbers[high]-numbers[low]-1;
+            low++;
+            high++;
         }
-        return true;
+        return numbersGap<=numbesOfZero? true:false;
     }
 
     public static void main(String[] args) {

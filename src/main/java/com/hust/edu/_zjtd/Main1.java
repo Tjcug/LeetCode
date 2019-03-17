@@ -19,7 +19,7 @@ public class Main1 {
         int i =1,cost;
         array[0]=0;
         while(i<array.length){
-            cost = 1000000000;
+            cost = Integer.MAX_VALUE;
             if(i-1>=0) cost = Math.min(cost,array[i-1]+1);
             if(i-4>=0) cost = Math.min(cost,array[i-4]+1);
             if(i-16>=0) cost = Math.min(cost,array[i-16]+1);

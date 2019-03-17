@@ -5,30 +5,32 @@ import java.util.HashMap;
 /**
  * locate com.hust.edu.offer
  * Created by MasterTj on 2019/3/6.
+ * 第一个出现的字符
+ * 在一个字符串(0<=字符串长度<=10000，全部由字母组成)中找到第一个只出现一次的字符,并返回它的位置, 如果没有则返回 -1（需要区分大小写）.
+ *
+ * 使用Hash表处理
  */
 public class _34_FirstNotRepeatingChar {
     public int FirstNotRepeatingChar(String str) {
         if(str.length()==0)
         return -1;
-
-        HashMap<Character,Integer> map=new HashMap<>();
-        for (char c : str.toCharArray()) {
-            if(map.get(c)==null){
-                map.put(c,1);
-            }else {
-                Integer integer = map.get(c);
-                map.put(c,++integer);
+        HashMap<Character,Integer> hashMap=new HashMap<>();
+        for (int i = 0; i < str.length(); i++) {
+            char charAt = str.charAt(i);
+            if(hashMap.get(charAt)==null){
+                hashMap.put(charAt,1);
+            }else{
+                Integer integer = hashMap.get(charAt);
+                hashMap.put(charAt,++integer);
             }
         }
 
-        int pos = -1;
-        for(int i=0;i<str.length();i++){
-            char c = str.charAt(i);
-            if (map.get(c) == 1) {
+        for (int i = 0; i < str.length(); i++) {
+            Integer integer = hashMap.get(str.charAt(i));
+            if(integer==1)
                 return i;
-            }
         }
-        return pos;
+        return -1;
     }
 
     public static void main(String[] args) {

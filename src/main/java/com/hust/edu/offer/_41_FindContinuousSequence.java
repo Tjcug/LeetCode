@@ -5,38 +5,39 @@ import java.util.ArrayList;
 /**
  * locate com.hust.edu.offer
  * Created by MasterTj on 2019/3/6.
+ * 和为S的连续正数序列
  */
 public class _41_FindContinuousSequence {
     public ArrayList<ArrayList<Integer>> FindContinuousSequence(int sum) {
-        ArrayList<ArrayList<Integer>> sqList = new ArrayList<ArrayList<Integer>>();
-        if(sum < 3) return sqList;
-        int small = 1;
-        int big = 2;
-        int curSum = small + big;
+        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+        if(sum < 3) return result;
+        int low=1;
+        int high=2;
         //设置middle变量的原因在于如果在当前总和小于sum的情况下，
         //small在增加到sum的一半的过程中肯定会大于sum
-        int middle = (1 + sum) / 2;
-        while (small<middle){
-            ArrayList<Integer> sq=new ArrayList<>();
-            if(curSum == sum){
-                for (int i = small; i <=big; i++) {
-                    sq.add(i);
-                }
+        int mid=(sum+1)/2;
+        int curSum=low+high;
+        while (low<mid){
+            if(curSum==sum)
+                addResultFromLowToHigh(result,low,high);
+            while (curSum > sum && low<mid){
+                curSum-=low;
+                low++;
+                if(curSum==sum)
+                    addResultFromLowToHigh(result,low,high);
             }
-            while (curSum > sum && small< middle){
-                curSum -=small;
-                small++;
-                if(curSum == sum){
-                    for (int i = small; i <= big; i++) {
-                        sq.add(i);
-                    }
-                }
-            }
-
-            if(sq.size()>0) sqList.add(sq);
-            big++;
-            curSum+=big;
+            high++;
+            curSum+=high;
         }
-        return sqList;
+        return result;
+    }
+
+    public void addResultFromLowToHigh(ArrayList<ArrayList<Integer>> result, int low, int high){
+        ArrayList arrayList=new ArrayList();
+        for (int i = low; i <= high; i++) {
+            arrayList.add(i);
+        }
+        result.add(arrayList);
+        return;
     }
 }

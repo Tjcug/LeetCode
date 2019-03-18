@@ -14,11 +14,11 @@ public class _58_isSymmetrical {
     boolean isSymmetricalHelper(TreeNode left,TreeNode right){
         if(left==null && right==null)
             return true;
-        if(left==null || right==null)
-            return false;
-        if(left.val==right.val)
+       if(left==null || right==null)
+           return false;
+        if(left.val==right.val){
             return isSymmetricalHelper(left.left,right.right) && isSymmetricalHelper(left.right,right.left);
-
+        }
         return false;
     }
 

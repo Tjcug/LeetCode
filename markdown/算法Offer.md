@@ -421,3 +421,72 @@ public class _35_InversePairs {
         return;
     }
 ```
+## 11. 不用加减乘除做位运算
+### 算法描述
+写一个函数，求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号。
+### 算法思路
+首先利用异或求解不算进位的运算，然后利用与求解。然后再用与操作计算进位的情况。
+### 实现代码
+``` java
+public class _48_Add {
+    public int Add(int num1,int num2) {
+        int sum,temp;
+        while(num2!=0){
+            sum=num1^num2;//不考虑进位相加
+            temp=(num1 & num2)<<1;//计算进位值
+            num1=sum;
+            num2=temp;
+        }
+        return num1;
+    }
+}
+```
+
+## 12. 正则表达式匹配
+###  算法描述
+请实现一个函数用来匹配包括'.'和'*'的正则表达式。模式中的字符'.'表示任意一个字符，而'*'表示它前面的字符可以出现任意次（包含0次）。
+在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串"aaa"与模式"a.a"和"ab*ac*a"匹配，但是与"aa.a"和"ab*a"均不匹配
+
+###  实现代码
+``` java
+public class _52_match {
+    public boolean match(char[] str, char[] pattern) {
+        if(str==null || pattern==null){
+            return false;
+        }
+        return matchHelper(str,0,pattern,0);
+    }
+
+    public boolean matchHelper(char[] str,int strIndex, char[] pattern , int patternIndex){
+        //有效性检验：str到尾，pattern到尾，匹配成功
+        if(strIndex==str.length-1 && patternIndex==pattern.length-1){
+            return true;
+        }
+        //pattern先到尾，匹配失败
+        if(patternIndex==pattern.length-1){
+            return false;
+        }
+        //模式第2个是*，且字符串第1个跟模式第1个匹配,分3种匹配模式；如不匹配，模式后移2位
+        if(patternIndex+1<pattern.length && pattern[patternIndex+1]=='*'){
+            if ((strIndex != str.length && pattern[patternIndex] == str[strIndex]) || (pattern[patternIndex] == '.' && strIndex != str.length)) {
+                return matchHelper(str, strIndex, pattern, patternIndex + 2)//模式后移2，视为x*匹配0个字符
+                        || matchHelper(str, strIndex + 1, pattern, patternIndex + 2)//视为模式匹配1个字符
+                        || matchHelper(str, strIndex + 1, pattern, patternIndex);//*匹配1个，再匹配str中的下一个
+            }else {
+                return matchHelper(str,strIndex,pattern,patternIndex+2);
+            }
+        }
+        //模式第2个不是*，且字符串第1个跟模式第1个匹配，则都后移1位，否则直接返回false
+        if ((strIndex != str.length && pattern[patternIndex] == str[strIndex]) || (pattern[patternIndex] == '.' && strIndex != str.length)) {
+            return matchHelper(str,strIndex+1,pattern,patternIndex+1);
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        _52_match match=new _52_match();
+        match.match("".toCharArray(),".*".toCharArray());
+    }
+}
+```
+

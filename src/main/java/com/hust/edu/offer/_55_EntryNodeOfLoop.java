@@ -3,26 +3,31 @@ package com.hust.edu.offer;
 /**
  * locate com.hust.edu.offer
  * Created by mastertj on 2019/3/8.
+ * 链表中环入口的节点
  */
 public class _55_EntryNodeOfLoop {
     public ListNode EntryNodeOfLoop(ListNode pHead) {
+        if(pHead==null)
+            return null;
         ListNode first=pHead;
         ListNode second=pHead;
-        while (second!=null && second.next!=null){
+        boolean m_bool=false;
+        while (second.next!=null){
             first=first.next;
             second=second.next.next;
-            if(first==second)
+            if(first==second) {
+                m_bool=true;
                 break;
+            }
         }
-        if(second == null || second.next==null)
+        if(!m_bool)
             return null;
-
         first=pHead;
         while (first!=second){
             first=first.next;
             second=second.next;
         }
-        return second;
+        return first;
     }
 
     private static class ListNode {

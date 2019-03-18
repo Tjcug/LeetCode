@@ -15,15 +15,14 @@ public class _61_Serialize {
      * @return
      */
     String Serialize(TreeNode root) {
-        StringBuffer s = new StringBuffer();
-        if (root == null) {
-            s.append("#,");
-            return s.toString();
+        StringBuilder sb=new StringBuilder();
+        if(root==null){
+            sb.append("#,");
         }
-        s.append(root.val + ",");
-        s.append(Serialize(root.left));
-        s.append(Serialize(root.right));
-        return s.toString();
+        sb.append(root.val+",");
+        Serialize(root.left);
+        Serialize(root.right);
+        return sb.toString();
     }
 
     /**
@@ -34,18 +33,17 @@ public class _61_Serialize {
      */
     TreeNode Deserialize(String str) {
         index++;
-        int length = str.length();
-        if (index >= length) {
-            return null;
+        if(index<str.length()){
+            String[] split = str.split(",");
+            TreeNode treeNode=null;
+            if(!split[index].equals("#")){
+                treeNode=new TreeNode(Integer.valueOf(split[index]));
+                treeNode.left=Deserialize(str);
+                treeNode.right=Deserialize(str);
+            }
+            return treeNode;
         }
-        String[] nodeSeq = str.split(",");
-        TreeNode pNode = null;
-        if (!nodeSeq[index].equals("#")) {
-            pNode = new TreeNode(Integer.valueOf(nodeSeq[index]));
-            pNode.left = Deserialize(str);
-            pNode.right = Deserialize(str);
-        }
-        return pNode;
+        return null;
     }
 
     private static class TreeNode {

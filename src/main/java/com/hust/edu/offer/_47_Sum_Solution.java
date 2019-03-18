@@ -8,10 +8,6 @@ public class _47_Sum_Solution {
     public int Sum_Solution(int n) {
         if(n<1)
             return 0;
-        int result=0;
-        for (int i = 1; i <= n ; i++) {
-            result+=i;
-        }
-        return result;
+        return Sum_Solution(n-1)+n;
     }
 }

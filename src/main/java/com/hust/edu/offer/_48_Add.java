@@ -3,6 +3,7 @@ package com.hust.edu.offer;
 /**
  * locate com.hust.edu.offer
  * Created by MasterTj on 2019/3/6.
+ * 不用加减乘除做加法运算
  */
 public class _48_Add {
     public int Add(int num1,int num2) {

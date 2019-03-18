@@ -3,27 +3,30 @@ package com.hust.edu.offer;
 /**
  * locate com.hust.edu.offer
  * Created by mastertj on 2019/3/11.
+ * 二叉树的下一个节点
  */
 public class _57_GetNext {
     public TreeLinkNode GetNext(TreeLinkNode pNode) {
-        if(pNode==null)return null;
-        //如果pNode的right!=null
-        if(pNode.right!=null){
-            pNode=pNode.right;
-            while (pNode.left!=null){
-                pNode=pNode.left;
-            }
-            return pNode;
-        }
-        //如果pNode的right=null
-        while (pNode.next!=null){
-            TreeLinkNode parent = pNode.next;
-            if(parent.left==pNode){
-                return parent;
-            }
-            pNode=pNode.next;
-        }
-        return null;
+       if(pNode==null)
+           return null;
+       if(pNode.right!=null){
+           //右子树不为null
+           TreeLinkNode right = pNode.right;
+           while (right.left!=null){
+               right=right.left;
+           }
+           return right;
+       }else if(pNode.next!=null){
+           //右子树为null需要往根节点遍历
+           TreeLinkNode current=pNode;
+           TreeLinkNode parrent=pNode.next;
+           while (parrent!=null && parrent.right==current){
+               current=parrent;
+               parrent=current.next;
+           }
+           return parrent;
+       }
+       return null;
     }
 
     private class TreeLinkNode {

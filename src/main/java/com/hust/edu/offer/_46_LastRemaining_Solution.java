@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  * locate com.hust.edu.offer
  * Created by MasterTj on 2019/3/13.
+ * 圆圈中剩下的数字
  */
 public class _46_LastRemaining_Solution {
     public int LastRemaining_Solution(int n, int m) {
@@ -15,19 +16,17 @@ public class _46_LastRemaining_Solution {
         for (int i = 0; i < n; i++) {
             data.add(i);
         }
-        int index=-1;
-        while (data.size()>1){
-            System.out.println(data);
-            index=(m+index) % data.size();
-            data.remove(index);
-            index--;
-        }
-        return data.get(0);
+        int index=0;
+       while (data.size()>1){
+           index = (index + m -1) % data.size();
+           data.remove(index);
+       }
+       return data.get(0);
     }
 
     public static void main(String[] args) {
         _46_LastRemaining_Solution lastRemaining_solution=new _46_LastRemaining_Solution();
-        int i = lastRemaining_solution.LastRemaining_Solution(5, 3);
+        int i = lastRemaining_solution.LastRemaining_Solution(5, 2);
         System.out.println(i);
     }
 }

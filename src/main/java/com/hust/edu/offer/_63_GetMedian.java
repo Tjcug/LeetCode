@@ -6,6 +6,8 @@ import java.util.Collections;
 /**
  * locate com.hust.edu.offer
  * Created by mastertj on 2019/3/11.
+ * 数据流中的中位数
+ * 如何得到一个数据流中的中位数？
  */
 public class _63_GetMedian {
     private ArrayList<Double> list=new ArrayList<>();

@@ -19,12 +19,13 @@ public class _63_GetMedian {
     public Double GetMedian() {
         Collections.sort(list);
         int size = list.size();
+        int mid=size/2;
         if(size%2==0){
-            int n1=size/2-1;
-            return ((list.get(n1) + list.get(n1+1)) / 2);
+            int n1=mid-1;
+            int n2=mid;
+            return ((list.get(n1) + list.get(n2)) / 2);
         }else {
-            int n1=size/2-1;
-            return (list.get(n1+1));
+            return (list.get(mid));
         }
     }
 }

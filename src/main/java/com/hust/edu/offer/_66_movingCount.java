@@ -3,6 +3,7 @@ package com.hust.edu.offer;
 /**
  * locate com.hust.edu.offer
  * Created by MasterTj on 2019/3/13.
+ * 机器人的运动范围
  */
 public class _66_movingCount {
     public int movingCount(int threshold, int rows, int cols) {

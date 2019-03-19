@@ -10,34 +10,28 @@ public class _26_Convert {
     private TreeNode pListNodeInList=null;
 
     public TreeNode Convert(TreeNode pRootOfTree) {
-        if(pRootOfTree==null){
+        if(pRootOfTree==null)
             return null;
-        }
         ConvertHelper(pRootOfTree);
-        TreeNode temp=pRootOfTree;
-        while (temp.left!=null){
-            temp=temp.left;
-        }
-        return temp;
+        while (pRootOfTree.left!=null)
+            pRootOfTree=pRootOfTree.left;
+        return pRootOfTree;
     }
 
     private void ConvertHelper(TreeNode pRootOfTree) {
         if(pRootOfTree==null)
             return;
-        TreeNode current = pRootOfTree;
         if(pRootOfTree.left!=null)
             ConvertHelper(pRootOfTree.left);
 
-        current.left=pListNodeInList;
+        pRootOfTree.left=pListNodeInList;
 
         if(pListNodeInList!=null)
-            pListNodeInList.right=current;
+            pListNodeInList.right=pRootOfTree;
 
-        pListNodeInList=current;
-
+        pListNodeInList=pRootOfTree;
         if(pRootOfTree.right!=null)
             ConvertHelper(pRootOfTree.right);
-
     }
 
     private static class TreeNode {

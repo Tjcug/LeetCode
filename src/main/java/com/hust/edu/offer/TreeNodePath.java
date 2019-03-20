@@ -10,6 +10,24 @@ import java.util.*;
 public class TreeNodePath {
     private ArrayList<TreeNode> result=new ArrayList<>();
 
+    /**
+     * 按照一定前序遍历规则 构造树
+     * 1 2 3 # # # 4 # #
+     * @param in
+     */
+    public TreeNode buildTree(Scanner in){
+        String str = in.next();
+        TreeNode root=null;
+        if(str.equals("#")){
+            root=null;
+        }else {
+            root=new TreeNode(Integer.valueOf(str));
+            root.left=buildTree(in);
+            root.right=buildTree(in);
+        }
+        return root;
+    }
+
     public ArrayList<TreeNode> treeNodePath(TreeNode root){
         if(root==null)
             return result;
@@ -130,6 +148,7 @@ public class TreeNodePath {
         if(root==null)
             return;
         Queue<TreeNode> queue=new ArrayDeque<>();
+        queue.add(root);
         while (!queue.isEmpty()){
             TreeNode poll = queue.poll();
             result.add(poll);
@@ -145,5 +164,26 @@ public class TreeNodePath {
         TreeNode left;
         TreeNode right;
         TreeNode(int x) { val = x; }
+
+        @Override
+        public String toString() {
+            return "TreeNode{" +
+                    "val=" + val +
+                    ", left=" + left +
+                    ", right=" + right +
+                    '}';
+        }
+    }
+
+    public static void main(String[] args) {
+        TreeNodePath treeNodePath=new TreeNodePath();
+        Scanner in=new Scanner(System.in);
+        TreeNode root = null;
+        root=treeNodePath.buildTree(in);
+        treeNodePath.levelOrderTraverse(root);
+        for (TreeNode treeNode : treeNodePath.result) {
+            System.out.print(treeNode.val +" ");
+        }
+
     }
 }

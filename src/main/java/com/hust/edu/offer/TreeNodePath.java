@@ -75,13 +75,13 @@ public class TreeNodePath {
         if(root==null)
             return;
         Stack<TreeNode> stack=new Stack<>();
-        stack.push(root);
         TreeNode pNode=root;
-        while (pNode!=null ||!stack.isEmpty()){
+        while (pNode!=null  || !stack.isEmpty()){
             if(pNode!=null){
                 stack.push(pNode);
                 pNode=pNode.left;
-            }else {//!stack.isEmpty
+            }else {
+                //!stack.isEmpty()
                 TreeNode pop = stack.pop();
                 result.add(pop);
                 pNode=pop.right;

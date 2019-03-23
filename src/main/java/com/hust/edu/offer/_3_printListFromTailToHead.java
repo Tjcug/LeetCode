@@ -21,7 +21,6 @@ public class _3_printListFromTailToHead {
 //        }
 //        return list;
 //    }
-
     public ArrayList<Integer> printListFromTailToHead(ListNode listNode){
         ArrayList<Integer> list=new ArrayList<>();
         printListFromTailToHeadHelper(list,listNode);

@@ -115,7 +115,6 @@ public class Sort {
     }
 
 
-    //归并排序,是一种不稳定的排序是算法这个算法的时间复复杂度都是O(NlogN)
     public void mergeSrot(int nums[],int start,int end){
         if(start>=end) return;
         int mid=(start+end)/2;
@@ -123,6 +122,7 @@ public class Sort {
         mergeSrot(nums, mid+1, end);
         mergeSrotHelper(nums,start,mid,end);
     }
+
 
     //  将两个有序序列归并为一个有序序列(二路归并)
     private void mergeSrotHelper(int[] nums, int start, int mid, int end) {

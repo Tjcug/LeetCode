@@ -2,7 +2,6 @@ package com.hust.edu._qq;
 
 /**
  * locate com.hust.edu._qq
-<<<<<<< HEAD
  * Created by MasterTj on 2019/3/23.
  * 编写一个函数来查找字符串数组中的最长公共前缀。
  */

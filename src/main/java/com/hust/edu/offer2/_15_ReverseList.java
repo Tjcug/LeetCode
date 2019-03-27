@@ -10,13 +10,12 @@ public class _15_ReverseList {
             return null ;
         ListNode dumpyNode=new ListNode(-1);
         while (head!=null){
-            ListNode reserverHead=dumpyNode.next;
-            ListNode headNext = head.next;
+            ListNode reverseHead = dumpyNode.next;
+            ListNode temp=head.next;
 
+            head.next=reverseHead;
             dumpyNode.next=head;
-            head.next=reserverHead;
-
-            head=headNext;
+            head=temp;
         }
         return dumpyNode.next;
     }

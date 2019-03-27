@@ -52,6 +52,7 @@ public class TreeNodePath {
         TreeNode pNode=root;
         while (pNode!=null ||!stack.isEmpty()){
             if(pNode!=null){
+                result.add(pNode);
                 stack.push(pNode);
                 pNode=pNode.left;
             }else {//!stack.isEmpty()

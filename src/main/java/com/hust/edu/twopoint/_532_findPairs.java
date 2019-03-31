@@ -15,16 +15,17 @@ public class _532_findPairs {
         Arrays.sort(nums);
         for (int i = 0; i < nums.length; i++) {
             if (i == 0 || nums[i - 1] != nums[i]) {
-                int low = i;
+                int low = i+1;
                 int high = nums.length - 1;
-                while (low < high) {
-                    if (nums[high] == nums[low] + k) {
+                while (low <= high) {
+                    int mid = (low + high) / 2;
+                    if (nums[mid] == nums[i] + k) {
                         count++;
                         break;
-                    } else if (nums[high] > nums[low] + k) {
-                        high--;
+                    } else if (nums[mid] > nums[i] + k) {
+                        high = mid - 1;
                     } else {
-                        low++;
+                        low = mid + 1;
                     }
                 }
             }

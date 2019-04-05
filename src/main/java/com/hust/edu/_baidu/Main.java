@@ -1,4 +1,4 @@
-package com.hust.edu.baidu;
+package com.hust.edu._baidu;
 
 import java.util.Scanner;
 

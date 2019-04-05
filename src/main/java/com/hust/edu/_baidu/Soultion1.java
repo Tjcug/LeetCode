@@ -1,4 +1,4 @@
-package com.hust.edu.baidu;
+package com.hust.edu._baidu;
 
 /**
  * locate com.hust.edu.baidu

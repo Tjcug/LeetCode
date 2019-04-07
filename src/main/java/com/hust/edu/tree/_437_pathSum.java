@@ -1,7 +1,5 @@
 package com.hust.edu.tree;
 
-import java.util.ArrayList;
-
 /**
  * locate com.hust.edu.tree
  * Created by MasterTj on 2019/4/7.
@@ -10,24 +8,26 @@ import java.util.ArrayList;
  * 找出路径和等于给定数值的路径总数。
  */
 public class _437_pathSum {
-    private ArrayList<ArrayList<Integer>> resultPath=new ArrayList<>();
-    private ArrayList<Integer> path=new ArrayList<>();
+    private int pathNum;
 
     public int pathSum(TreeNode root, int target) {
         if(root==null)
-            return resultPath.size();
-        path.add(root.val);
-        if (root.val==target){
-            resultPath.add(new ArrayList<>(path));
-        }
-        if(root.left!=null){
-            pathSum(root.left,target-root.val);
-        }
-        if(root.right!=null){
-            pathSum(root.right,target-root.val);
-        }
-        path.remove(path.size()-1);
-        return resultPath.size();
+            return pathNum;
+        pathSumHelper(root,target);
+        pathSum(root.left,target);
+        pathSum(root.right,target);
+        return pathNum;
+    }
+
+    private void pathSumHelper(TreeNode root,int target){
+        if(root==null)
+            return;
+        if(root.val==target)
+            pathNum++;
+        if(root.left!=null)
+            pathSumHelper(root.left,target-root.val);
+        if(root.right!=null)
+            pathSumHelper(root.right,target-root.val);
     }
 
     private static class TreeNode {

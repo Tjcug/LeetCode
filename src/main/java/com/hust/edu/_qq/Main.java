@@ -25,7 +25,7 @@ public class Main {
     }
 }
 
-//public class Main {
+//public class Main2 {
 //        public static void main(String[] args) {
 //            String[] strs={"abcde","abc","ab","ae"};
 //            System.out.println(getMaxStr(strs));

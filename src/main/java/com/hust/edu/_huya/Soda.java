@@ -6,7 +6,7 @@ import java.util.Scanner;
  * locate com.hust.edu._huya
  * Created by MasterTj on 2019/4/29.
  */
-public class Soda {
+public class    Soda {
     public static int findMaxSodaNum(int n){
         if(n==1) return 0;
         if(n==2) return 1;

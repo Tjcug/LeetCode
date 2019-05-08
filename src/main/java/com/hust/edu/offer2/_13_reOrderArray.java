@@ -11,13 +11,13 @@ public class _13_reOrderArray {
         ArrayList<Integer> aList=new ArrayList<>();
         ArrayList<Integer> bList=new ArrayList<>();
         for (int i = 0; i < array.length; i++) {
-            if(array[i]%2!=0){
+            if(array[i]%2!=0)
                 aList.add(array[i]);
-            }else
+            else
                 bList.add(array[i]);
         }
         aList.addAll(bList);
-        for (int i = 0; i < aList.size(); i++) {
+        for (int i = 0; i < array.length; i++) {
             array[i]=aList.get(i);
         }
     }

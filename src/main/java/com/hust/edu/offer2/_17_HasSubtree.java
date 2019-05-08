@@ -6,10 +6,9 @@ package com.hust.edu.offer2;
  */
 public class _17_HasSubtree {
     public boolean HasSubtree(TreeNode root1,TreeNode root2) {
-        if(root1==null || root2==null){
+        if(root1==null || root2==null)
             return false;
-        }
-        return HasSubtreeHelper(root1, root2) || HasSubtreeHelper(root1.left,root2) || HasSubtreeHelper(root1.right,root2);
+        return HasSubtreeHelper(root1,root2) || HasSubtreeHelper(root1.left,root2) || HasSubtreeHelper(root1.right,root2);
     }
 
     /**
@@ -20,10 +19,8 @@ public class _17_HasSubtree {
      */
     private boolean HasSubtreeHelper(TreeNode root1,TreeNode root2) {
         if(root2==null) return true;
-        if(root1==null) return false;
-        if(root1.val!=root2.val)
-            return false;
-        return HasSubtreeHelper(root1.left,root2.left) && HasSubtreeHelper(root1.right,root2.right);
+       if(root1==null) return false;
+       return root1.val==root2.val && HasSubtreeHelper(root1.left,root2.left) && HasSubtreeHelper(root1.right,root2.right);
     }
 
     private static class TreeNode {

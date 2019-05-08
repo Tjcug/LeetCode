@@ -11,11 +11,11 @@ public class _15_ReverseList {
         ListNode dumpyNode=new ListNode(-1);
         while (head!=null){
             ListNode reverseHead = dumpyNode.next;
-            ListNode temp=head.next;
+            ListNode next = head.next;
 
             head.next=reverseHead;
             dumpyNode.next=head;
-            head=temp;
+            head=next;
         }
         return dumpyNode.next;
     }

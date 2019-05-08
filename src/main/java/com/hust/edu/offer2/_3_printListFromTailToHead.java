@@ -7,17 +7,18 @@ import java.util.ArrayList;
  * Created by MasterTj on 2019/3/26.
  */
 public class _3_printListFromTailToHead {
+    private ArrayList<Integer> arrayList=new ArrayList<>();
+
     public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
-        ArrayList<Integer> list=new ArrayList<>();
-        printListFromTailToHeadHelper(listNode,list);
-        return list;
+        printListFromTailToHeadHelper(listNode);
+        return arrayList;
     }
 
-    private void printListFromTailToHeadHelper(ListNode listNode,ArrayList<Integer> list){
-        if(listNode==null)
-            return;
-        printListFromTailToHeadHelper(listNode.next,list);
-        list.add(listNode.val);
+    public void printListFromTailToHeadHelper(ListNode listNode) {
+        if(listNode!=null) {
+            printListFromTailToHeadHelper(listNode.next);
+            arrayList.add(listNode.val);
+        }
     }
 
     private static class ListNode {

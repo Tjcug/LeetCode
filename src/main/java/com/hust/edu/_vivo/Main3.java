@@ -10,9 +10,9 @@ public class Main3 {
         int maxRes = 0;
 
         for (int i = 0; i < Math.pow(2, length); i++) {
-            String string = Integer.toBinaryString(i);
+            StringBuilder string = new StringBuilder(Integer.toBinaryString(i));
             while (string.length()<length){
-                string+="0";
+                string.append("0");
             }
             int totalValue=0;
             int res=0;

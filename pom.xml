@@ -6,9 +6,16 @@
 
   <groupId>com.hust.edu</groupId>
   <artifactId>LeetCode</artifactId>
-  <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+      <module>LeetCode-offer</module>
+      <module>LeetCode-code</module>
+      <module>LeetCode-internship</module>
+      <module>LeetCode-recruitment</module>
+    </modules>
 
-  <name>LeetCode</name>
+    <name>LeetCode</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 

@@ -6,11 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="LeetCode" />
+        <module name="LeetCode-code" />
+        <module name="LeetCode-internship" />
+        <module name="LeetCode-offer" />
+        <module name="LeetCode-recruitment" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="LeetCode" target="1.8" />
+      <module name="LeetCode-code" target="1.8" />
+      <module name="LeetCode-internship" target="1.8" />
+      <module name="LeetCode-offer" target="1.8" />
+      <module name="LeetCode-recruitment" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

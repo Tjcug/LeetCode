@@ -32,7 +32,7 @@ public class Main2 {
         Set<Integer> set2 = new HashSet<Integer>(Arrays.asList(B));
         Set<Integer> set3 = new HashSet<Integer>(Arrays.asList(C));
 
-        // 合并两个集合
+        // 交集两个集合
         set1.retainAll(set2);
         set1.retainAll(set3);
 

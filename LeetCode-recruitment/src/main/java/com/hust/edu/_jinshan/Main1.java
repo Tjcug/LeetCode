@@ -39,7 +39,7 @@ public class Main1 {
             StringBuilder sb1=new StringBuilder(str.substring(0,i+1));
             StringBuilder sb2=new StringBuilder(str.substring(i,str.length()));
             int l1 = longestMonotone(sb1.toString(), true);
-            int l2 = longestMonotone(sb1.toString(), false);
+            int l2 = longestMonotone(sb2.toString(), false);
             result[i] = l1 + l2 -1;
             max = Math.max(max,result[i]);
         }
